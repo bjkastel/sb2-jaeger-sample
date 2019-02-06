@@ -1,0 +1,44 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: DateTime
+  mvc:
+    view:
+      prefix: /static/
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+
+opentracing:
+  jaeger:
+    log-spans: true
+    enabled: true
