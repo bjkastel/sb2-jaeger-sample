@@ -10,7 +10,9 @@ import java.time.LocalDateTime;
 @Data
 public class RequestLog {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "id_sequence")
     @SequenceGenerator(
             name = "id_generator",
             sequenceName = "id_sequence")
