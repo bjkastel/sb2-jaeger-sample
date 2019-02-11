@@ -1,5 +1,7 @@
 package net.kasteleiner.sample.tracing.datetime.adapter.rest;
 
+import io.opentracing.Tracer;
+import lombok.RequiredArgsConstructor;
 import net.kasteleiner.sample.tracing.datetime.adapter.rest.dto.DateTimeDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,7 +15,9 @@ import java.time.LocalDateTime;
 import java.util.Random;
 
 @RestController
+@RequiredArgsConstructor
 public class DateTimeResource {
+    private final Tracer tracer;
 
     @RequestMapping(
             value = "/datetime/current",
@@ -23,9 +27,17 @@ public class DateTimeResource {
     @ResponseBody
     public ResponseEntity<DateTimeDto> datetimeCurrent() throws InterruptedException {
         Random random = new Random();
-        Thread.sleep(random.nextInt(5000));
+        int waitTime = random.nextInt(5000);
+
+        // ----------------------------------------------------------------------
+        // Add waitTime as Tag to current Span
+        tracer.activeSpan().setTag("waitTime", waitTime);
+        // ----------------------------------------------------------------------
+
+        Thread.sleep(waitTime);
         DateTimeDto dateTimeDto = new DateTimeDto();
         dateTimeDto.setDateTime(LocalDateTime.now());
+
         return new ResponseEntity<>(dateTimeDto, HttpStatus.OK);
     }
 }
