@@ -1,0 +1,81 @@
+server:
+  port: 8081
+
+logging:
+  level:
+    org:
+      hibernate:
+        SQL: DEBUG
+
+spring:
+  application:
+    name: Table
+  mvc:
+    view:
+      prefix: /static/
+  datasource:
+    username: user
+    password: passwd
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/tracing
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        # Hibernate ddl auto (create, create-drop, validate, update)
+        ddl-auto: create-drop
+        temp:
+          use_jdbc_metadata_defaults: false
+        format_sql: true
+    show-sql: true
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: adminpw
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+
+opentracing:
+  jaeger:
+    log-spans: true
+    enabled: true
+
+---
+spring:
+  profiles: h2
+  datasource:
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:~/tracing
+  h2:
+    console:
+      enabled: true

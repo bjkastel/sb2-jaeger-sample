@@ -13,9 +13,9 @@
     <name>Tracing :: APP</name>
 
     <modules>
-        <module>backend</module>
-        <module>persistence</module>
-        <module>datetime</module>
+        <module>reservation</module>
+        <module>table</module>
+        <module>sms</module>
     </modules>
 
     <dependencies>

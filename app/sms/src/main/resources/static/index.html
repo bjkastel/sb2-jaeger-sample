@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Tracing Sample - SMS</title>
+        <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="app" class="container">
+            <h1>Tracing Sample - SMS</h1>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Mobile Number</th>
+                    <th>Text</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="sms in smsList">
+                    <td>{{ sms.number }}</td>
+                    <td>{{ sms.text }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Bootstrap 4 -->
+        <script src="webjars/jquery/3.0.0/jquery.min.js"></script>
+        <script src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Vue JS + WebSocket -->
+        <script src="webjars/sockjs-client/1.1.2/sockjs.min.js"></script>
+        <script src="webjars/stomp-websocket/2.3.3-1/stomp.min.js"></script>
+        <script src="webjars/vue/2.5.16/vue.min.js"></script>
+
+        <!-- Desktop notify -->
+        <!--
+        <script src="https://raw.githubusercontent.com/dennisbruner/vue-native-notification/master/vue-native-notification.min.js"></script>
+        -->
+        <script src="vue-native-notification.min.js"></script>
+
+        <script src="app.js"></script>
+    </body>
+</html>

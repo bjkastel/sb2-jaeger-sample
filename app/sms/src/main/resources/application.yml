@@ -1,0 +1,48 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: SMS
+  mvc:
+    view:
+      prefix: /static/
+  activemq:
+    broker-url: tcp://localhost:61616
+    user: admin
+    password: adminpw
+
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+  endpoint:
+    info:
+      enabled: true
+    health:
+      enabled: true
+    prometheus:
+      enabled: true
+    metrics:
+      enabled: true
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  info:
+    build:
+      enabled: true
+    git:
+      enabled: true
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+
+opentracing:
+  jaeger:
+    log-spans: true
+    enabled: true
