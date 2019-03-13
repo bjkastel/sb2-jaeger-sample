@@ -51,10 +51,10 @@ public class TableApplication {
         int waitTime;
 
         // ----------------------------------------------------------------------
-        // Open own Span for the megaFancyBusinessCalculation.
+        // Open own Span for the tableSelectCalculation.
         // It's using try-with-resources feature to close the span automatically.
-        try (Scope scope = tracer.buildSpan("megaFancyBusinessCalculation").startActive(true)) {
-            waitTime = megaFancyBusinessCalculation();
+        try (Scope scope = tracer.buildSpan("tableSelectCalculation").startActive(true)) {
+            waitTime = tableSelectCalculation();
             scope.span().setTag("waitTime", waitTime);
         }
         // ----------------------------------------------------------------------
@@ -62,7 +62,7 @@ public class TableApplication {
         sendSms(reservationEntity.getMobileNumber(), "Your reservation has been accepted!");
     }
 
-    private int megaFancyBusinessCalculation() {
+    private int tableSelectCalculation() {
         Random random = new Random();
         int waitTime = random.nextInt(500);
         try {
