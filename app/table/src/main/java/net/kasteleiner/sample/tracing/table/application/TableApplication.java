@@ -6,10 +6,8 @@ import lombok.RequiredArgsConstructor;
 import net.kasteleiner.sample.tracing.table.adapter.jpa.ReservationRepository;
 import net.kasteleiner.sample.tracing.table.adapter.jpa.entities.ReservationEntity;
 import net.kasteleiner.sample.tracing.table.domain.JmsSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,11 +32,6 @@ public class TableApplication {
         return reservationEntities;
     }
 
-    @RequestMapping(
-            value = "/reservations/slow",
-            method = RequestMethod.GET
-    )
-    @ResponseBody
     public List<ReservationEntity> getReservationListSlow() {
         List<ReservationEntity> reservationEntities = new ArrayList<>();
 
@@ -51,6 +44,7 @@ public class TableApplication {
         return reservationEntities;
     }
 
+    @Async
     public void processReservation(ReservationEntity reservationEntity) {
         reservationRepository.save(reservationEntity);
 
