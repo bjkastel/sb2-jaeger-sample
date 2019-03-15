@@ -1,11 +1,43 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
     <head>
-        <title>Tracing Sample - Pong</title>
-        <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <title>Tracing Sample - Table Service</title>
+        <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Tracing Sample - Pong</h1>
-        <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <div id="app" class="container">
+            <h1>Tracing Sample - Table Service</h1>
+            <button v-on:click="getReservationsFast()" class="btn btn-success">Schnell</button>
+            <button v-on:click="getReservationsSlow()" class="btn btn-warning">Langsam</button>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Vorname</th>
+                    <th>Nachname</th>
+                    <th>Anzahl Pl&auml;tze</th>
+                    <th>Mobile Number</th>
+                    <th>Reservierungszeit</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr v-for="reservation in reservationList">
+                    <td>{{ reservation.firstName }}</td>
+                    <td>{{ reservation.lastName }}</td>
+                    <td>{{ reservation.reservedSeats }}</td>
+                    <td>{{ reservation.mobileNumber }}</td>
+                    <td>{{ reservation.reservationTime }}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Bootstrap 4 -->
+        <script src="webjars/jquery/3.0.0/jquery.min.js"></script>
+        <script src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Vue JS + WebSocket -->
         <script src="webjars/vue/2.5.16/vue.min.js"></script>
+        <script src="webjars/axios/0.18.0/dist/axios.min.js"></script>
+
+        <script src="app.js"></script>
     </body>
 </html>
