@@ -49,12 +49,11 @@ public class TableApplication {
         reservationRepository.save(reservationEntity);
 
         int waitTime;
-
         // ----------------------------------------------------------------------
-        // Open own Span for the tableSelectCalculation.
+        // Open own Span for the selectTable.
         // It's using try-with-resources feature to close the span automatically.
-        try (Scope scope = tracer.buildSpan("tableSelectCalculation").startActive(true)) {
-            waitTime = tableSelectCalculation();
+        try (Scope scope = tracer.buildSpan("selectTable").startActive(true)) {
+            waitTime = selectTable();
             scope.span().setTag("waitTime", waitTime);
         }
         // ----------------------------------------------------------------------
@@ -62,7 +61,7 @@ public class TableApplication {
         sendSms(reservationEntity.getMobileNumber(), "Your reservation has been accepted!");
     }
 
-    private int tableSelectCalculation() {
+    private int selectTable() {
         Random random = new Random();
         int waitTime = random.nextInt(500);
         try {
