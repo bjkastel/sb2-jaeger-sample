@@ -1,11 +1,46 @@
-<html>
+<!DOCTYPE html>
+<html lang="de">
     <head>
-        <title>Tracing Sample - Reservation</title>
-        <link href="webjars/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <title>Tracing Sample - Reservation Service</title>
+        <link href="webjars/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Tracing Sample - Reservation</h1>
-        <script src="webjars/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <div id="app" class="container">
+            <h1>Tracing Sample - Reservation Service</h1>
+            <button v-on:click="reserveSimple()" class="btn btn-warning">Einfache reservieren</button>
+            <h2>Reservierung</h2>
+            <table class="table table-bordered">
+                <tr>
+                    <td>
+                        <input type="text" v-model="reservation.firstName" placeholder="Vorname"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" v-model="reservation.lastName" placeholder="Nachname"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" v-model="reservation.reservedSeats" placeholder="Sitzplätze"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" v-model="reservation.mobileNumber" placeholder="Handy Nummer"/>
+                    </td>
+                </tr>
+            </table>
+            <button v-on:click="reserve()" class="btn btn-success">Reservieren</button>
+        </div>
+        <!-- Bootstrap 4 -->
+        <script src="webjars/jquery/3.0.0/jquery.min.js"></script>
+        <script src="webjars/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Vue JS + WebSocket -->
         <script src="webjars/vue/2.5.16/vue.min.js"></script>
+        <script src="webjars/axios/0.18.0/dist/axios.min.js"></script>
+
+        <script src="app.js"></script>
     </body>
 </html>

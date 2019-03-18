@@ -5,10 +5,7 @@ import net.kasteleiner.sample.tracing.reservation.application.ReservationApplica
 import net.kasteleiner.sample.tracing.reservation.domain.ReservationDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 
@@ -22,12 +19,24 @@ public class ReservationResource {
             method = RequestMethod.GET
     )
     @ResponseBody
-    public ResponseEntity<ReservationDto> receiveReservation() throws InterruptedException {
+    public ResponseEntity<ReservationDto> receiveSimpleReservation() {
         ReservationDto reservationDto = new ReservationDto();
         reservationDto.setFirstName("Tim");
         reservationDto.setLastName("Struppi");
         reservationDto.setMobileNumber("+49 152 12311121");
         reservationDto.setReservedSeats(2);
+        reservationDto.setReservationTime(LocalDateTime.now());
+
+        application.reserveTable(reservationDto);
+        return new ResponseEntity<>(reservationDto, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(
+            value = "/reservation",
+            method = RequestMethod.PUT
+    )
+    @ResponseBody
+    public ResponseEntity<ReservationDto> receiveReservation(@RequestBody ReservationDto reservationDto) {
         reservationDto.setReservationTime(LocalDateTime.now());
 
         application.reserveTable(reservationDto);
