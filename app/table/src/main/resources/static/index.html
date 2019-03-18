@@ -7,26 +7,28 @@
     <body>
         <div id="app" class="container">
             <h1>Tracing Sample - Table Service</h1>
+            <div v-if="duration > 0"  class="alert alert-primary" role="alert" transition="expand">Laufzeit: {{ duration }}ms</div>
             <button v-on:click="getReservationsFast()" class="btn btn-success">Schnell</button>
             <button v-on:click="getReservationsSlow()" class="btn btn-warning">Langsam</button>
+            <hr/>
             <table class="table table-bordered">
                 <thead>
-                <tr>
-                    <th>Vorname</th>
-                    <th>Nachname</th>
-                    <th>Anzahl Pl&auml;tze</th>
-                    <th>Mobile Number</th>
-                    <th>Reservierungszeit</th>
-                </tr>
+                    <tr>
+                        <th>Vorname</th>
+                        <th>Nachname</th>
+                        <th>Anzahl Pl&auml;tze</th>
+                        <th>Mobile Number</th>
+                        <th>Reservierungszeit</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr v-for="reservation in reservationList">
-                    <td>{{ reservation.firstName }}</td>
-                    <td>{{ reservation.lastName }}</td>
-                    <td>{{ reservation.reservedSeats }}</td>
-                    <td>{{ reservation.mobileNumber }}</td>
-                    <td>{{ reservation.reservationTime }}</td>
-                </tr>
+                    <tr v-for="reservation in reservationList">
+                        <td>{{ reservation.firstName }}</td>
+                        <td>{{ reservation.lastName }}</td>
+                        <td>{{ reservation.reservedSeats }}</td>
+                        <td>{{ reservation.mobileNumber }}</td>
+                        <td>{{ reservation.reservationTime }}</td>
+                    </tr>
                 </tbody>
             </table>
         </div>
