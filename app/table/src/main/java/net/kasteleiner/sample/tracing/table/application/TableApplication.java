@@ -36,7 +36,7 @@ public class TableApplication {
         List<ReservationEntity> reservationEntities = new ArrayList<>();
 
         long count = reservationRepository.count();
-        for  (long i = 0; i < count; i++) {
+        for  (long i = 1; i <= count; i++) {
             Optional<ReservationEntity> reservation = reservationRepository.findById(i);
             reservation.ifPresent(reservationEntities::add);
         }

@@ -27,6 +27,8 @@ spring:
         temp:
           use_jdbc_metadata_defaults: false
         format_sql: true
+        id:
+          new_generator_mappings: true
     show-sql: true
   activemq:
     broker-url: tcp://localhost:61616
