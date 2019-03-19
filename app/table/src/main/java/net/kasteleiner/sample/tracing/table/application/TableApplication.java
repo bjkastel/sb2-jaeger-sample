@@ -58,7 +58,7 @@ public class TableApplication {
         }
         // ----------------------------------------------------------------------
 
-        sendSms(reservationEntity.getMobileNumber(), "Your reservation has been accepted!");
+        sendSms(reservationEntity.getMobileNumber(), "Your Table is ready!");
     }
 
     private int selectTable() {
